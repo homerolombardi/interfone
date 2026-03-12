@@ -13,9 +13,9 @@ const APARTMENTS = {
   "201": { whatsapp: "5527900000001" },
   "202": { whatsapp: "5527900000002" },
   "301": { whatsapp: "5527900000003" },
-  "302": { whatsapp: "5527900000004" },
-  "401": { whatsapp: "5527900000005" },
-  "402": { whatsapp: "5527900000006" },
+  "302": { whatsapp: "5527981630123" },
+  "401": { whatsapp: "5527992384699" },
+  "402": { whatsapp: "5527995212421" },
 };
 
 export default function handler(req, res) {
