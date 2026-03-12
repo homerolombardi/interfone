@@ -11,25 +11,26 @@
 // Formato: 55 + DDD + número (ex: 5527999998888)
 const APARTMENTS = {
   "201": [
-    { nome: "Morador 201-A", whatsapp: "5527900000001" },
-    { nome: "Morador 201-B", whatsapp: "5527900000002" },
+    { nome: "And", whatsapp: "5527900000001" },
+    { nome: "Mar", whatsapp: "5527900000002" },
   ],
   "202": [
-    { nome: "Morador 202-A", whatsapp: "5527900000003" },
+    { nome: "Chr", whatsapp: "5527900000003" },
+    { nome: "Mei", whatsapp: "5527900000003" },
   ],
   "301": [
-    { nome: "Morador 301-A", whatsapp: "5527900000004" },
-    { nome: "Morador 301-B", whatsapp: "5527900000005" },
+    { nome: "All", whatsapp: "5527900000004" },
+    { nome: "Ema", whatsapp: "5527900000005" },
   ],
   "302": [
-    { nome: "Morador 302-A", whatsapp: "5527981630123" },
+    { nome: "Chi", whatsapp: "5527981630123" },
   ],
   "401": [
-    { nome: "Morador 401-A", whatsapp: "5527992384699" },
-    { nome: "Morador 401-B", whatsapp: "5527900000007" },
+    { nome: "", whatsapp: "5527981630123" },
   ],
   "402": [
-    { nome: "Morador 402-A", whatsapp: "5527995212421" },
+    { nome: "San", whatsapp: "5527900000003" },
+    { nome: "Thi", whatsapp: "5527900000003" },
   ],
 };
 
