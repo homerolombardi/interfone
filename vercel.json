@@ -2,7 +2,7 @@
   "version": 2,
   "routes": [
     {
-      "src": "/api/call/([^/]+)",
+      "src": "/api/call/([^/]+)/([^/?]+)(\\?.*)?$",
       "dest": "/api/call/[apt].js"
     }
   ]
