@@ -10,14 +10,11 @@
 // Substitua pelos números reais no formato: 55 + DDD + número
 // Exemplo: 5527999998888  (Brasil, ES, número com 9 dígitos)
 export default function handler(req, res) {
-  const { apt, via = "whatsapp" } = req.query;
+  const { via = "whatsapp" } = req.query;
 
-  const debug = {
-    apt,
-    via,
-    query: req.query,
-    url: req.url,
-  };
+  // Extrai o apartamento direto da URL: /api/call/402
+  const parts = req.url.split("?")[0].split("/");
+  const apt = parts[parts.length - 1];
 
   const APARTMENTS = {
     "201": { whatsapp: "5527900000001" },
@@ -30,7 +27,7 @@ export default function handler(req, res) {
 
   const resident = APARTMENTS[apt];
   if (!resident) {
-    return res.status(404).json({ error: "Apartamento não encontrado.", debug });
+    return res.status(404).json({ error: "Apartamento não encontrado.", apt, url: req.url });
   }
 
   let destination;
@@ -39,7 +36,7 @@ export default function handler(req, res) {
   } else if (via === "tel") {
     destination = `tel:+${resident.whatsapp}`;
   } else {
-    return res.status(400).json({ error: "Canal inválido.", debug });
+    return res.status(400).json({ error: "Canal inválido." });
   }
 
   res.setHeader("Cache-Control", "no-store, no-cache, must-revalidate");
