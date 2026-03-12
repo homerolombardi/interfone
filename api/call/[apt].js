@@ -9,22 +9,28 @@
 // 🔐 CADASTRO DOS MORADORES
 // Substitua pelos números reais no formato: 55 + DDD + número
 // Exemplo: 5527999998888  (Brasil, ES, número com 9 dígitos)
-const APARTMENTS = {
-  "201": { whatsapp: "5527900000001" },
-  "202": { whatsapp: "5527900000002" },
-  "301": { whatsapp: "5527900000003" },
-  "302": { whatsapp: "5527981630123" },
-  "401": { whatsapp: "5527992384699" },
-  "402": { whatsapp: "5527995212421" },
-};
-
 export default function handler(req, res) {
-  const { apt } = req.query;
-  const { via = "whatsapp" } = req.query;
+  const { apt, via = "whatsapp" } = req.query;
+
+  const debug = {
+    apt,
+    via,
+    query: req.query,
+    url: req.url,
+  };
+
+  const APARTMENTS = {
+    "201": { whatsapp: "5527900000001" },
+    "202": { whatsapp: "5527900000002" },
+    "301": { whatsapp: "5527900000003" },
+    "302": { whatsapp: "5527981630123" },
+    "401": { whatsapp: "5527992384699" },
+    "402": { whatsapp: "5527995212421" },
+  };
 
   const resident = APARTMENTS[apt];
   if (!resident) {
-    return res.status(404).json({ error: "Apartamento não encontrado." });
+    return res.status(404).json({ error: "Apartamento não encontrado.", debug });
   }
 
   let destination;
@@ -33,7 +39,7 @@ export default function handler(req, res) {
   } else if (via === "tel") {
     destination = `tel:+${resident.whatsapp}`;
   } else {
-    return res.status(400).json({ error: "Canal inválido." });
+    return res.status(400).json({ error: "Canal inválido.", debug });
   }
 
   res.setHeader("Cache-Control", "no-store, no-cache, must-revalidate");
