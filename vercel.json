@@ -1,0 +1,9 @@
+{
+  "version": 2,
+  "routes": [
+    {
+      "src": "/api/call/([^/]+)",
+      "dest": "/api/call/[apt].js"
+    }
+  ]
+}
