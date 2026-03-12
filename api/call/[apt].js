@@ -22,17 +22,13 @@ export default function handler(req, res) {
   const { apt } = req.query;
   const { via = "whatsapp" } = req.query;
 
-  // Apartamento existe?
   const resident = APARTMENTS[apt];
   if (!resident) {
     return res.status(404).json({ error: "Apartamento não encontrado." });
   }
 
-  // Monta a URL de destino conforme o canal
   let destination;
-
   if (via === "whatsapp") {
-    // Abre o WhatsApp direto — sem expor o número ao frontend
     destination = `https://wa.me/${resident.whatsapp}`;
   } else if (via === "tel") {
     destination = `tel:+${resident.whatsapp}`;
@@ -40,12 +36,8 @@ export default function handler(req, res) {
     return res.status(400).json({ error: "Canal inválido." });
   }
 
-  // Headers de segurança — impede cache e impede que o browser
-  // mostre o número na barra de endereço ou histórico
   res.setHeader("Cache-Control", "no-store, no-cache, must-revalidate");
   res.setHeader("Pragma", "no-cache");
   res.setHeader("Referrer-Policy", "no-referrer");
-
-  // Redireciona — 302 (temporário) para não ficar em cache
   return res.redirect(302, destination);
 }
